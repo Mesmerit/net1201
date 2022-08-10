@@ -27,6 +27,10 @@ public class ProductManager {
                 result = tmp;
             }
         }
-        return result;
+        if (result.length != 0) {
+            return result;
+        } else {
+            return null;
+        }
     }
 }

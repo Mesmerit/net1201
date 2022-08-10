@@ -28,6 +28,40 @@ public class ProductManagerTest {
     }
 
     @Test
+    void shouldFindOneSmartphone() {
+        ProductRepository repository = new ProductRepository();
+        ProductManager manager = new ProductManager(repository);
+
+        manager.addProduct(book2);
+        manager.addProduct(book3);
+        manager.addProduct(smartphone1);
+        manager.addProduct(smartphone2);
+
+
+        Product[] actual = manager.searchBy("RunMan");
+        Product[] expected = {smartphone1};
+
+        Assertions.assertArrayEquals(expected, actual);
+    }
+
+    @Test
+    void shouldNoFind() {
+        ProductRepository repository = new ProductRepository();
+        ProductManager manager = new ProductManager(repository);
+
+        manager.addProduct(book2);
+        manager.addProduct(book3);
+        manager.addProduct(smartphone1);
+        manager.addProduct(smartphone2);
+
+
+        Product[] actual = manager.searchBy("Api");
+        Product[] expected = null;
+
+        Assertions.assertArrayEquals(expected, actual);
+    }
+
+    @Test
     void shouldFindTwoBook() {
         ProductRepository repository = new ProductRepository();
         ProductManager manager = new ProductManager(repository);
